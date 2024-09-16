@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class RegistroCliente {
 
-    // Método para conectar a PostgreSQL (igual que antes)
+    // Método para conectar a PostgreSQL
     private static Connection conectar() {
         Connection conexion = null;
         try {
@@ -22,7 +22,7 @@ public class RegistroCliente {
         return conexion;
     }
 
-    // Método para registrar un cliente (igual que antes)
+    // Método para registrar un cliente
     private static void registrarCliente(int document, String name, String lastName, String gener, long number,
             String email, String address) {
         Connection conexion = conectar();
@@ -48,7 +48,7 @@ public class RegistroCliente {
         }
     }
 
-    // Método para obtener todos los clientes (igual que antes)
+    // Método para obtener todos los clientes
     private static String obtenerClientes() {
         Connection conexion = conectar();
         StringBuilder clientes = new StringBuilder();
@@ -155,7 +155,7 @@ public class RegistroCliente {
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        // Panel de Registro de Clientes (igual que antes)
+        // Panel de Registro de Clientes
         JPanel panelRegistro = new JPanel();
         panelRegistro.setLayout(null);
         // Crear los campos para registrar clientes
@@ -244,7 +244,7 @@ public class RegistroCliente {
 
         tabbedPane.addTab("Registro de Cliente", panelRegistro);
 
-        // Panel para listar clientes (igual que antes)
+        // Panel para listar clientes
         JPanel panelClientes = new JPanel();
         panelClientes.setLayout(new BorderLayout());
         JTextArea textArea = new JTextArea();
@@ -325,14 +325,20 @@ public class RegistroCliente {
         documentText_edit.setBounds(100, 190, 160, 25);
         panelEditar.add(documentText_edit);
 
-        // Agregar más campos (género, número, correo, dirección)...
+        JLabel generLabel_edit = new JLabel("Género:");
+        generLabel_edit.setBounds(10, 220, 80, 25);
+        panelEditar.add(generLabel_edit);
+
+        JTextField generText_edit = new JTextField();
+        generText_edit.setBounds(100, 220, 160, 25);
+        panelEditar.add(generText_edit);
 
         JButton actualizarButton = new JButton("Actualizar");
-        actualizarButton.setBounds(100, 220, 120, 25);
+        actualizarButton.setBounds(100, 250, 120, 25);
         panelEditar.add(actualizarButton);
 
         JButton eliminarButton = new JButton("Eliminar");
-        eliminarButton.setBounds(230, 220, 120, 25);
+        eliminarButton.setBounds(230, 250, 120, 25);
         panelEditar.add(eliminarButton);
 
         // Acción para buscar cliente
@@ -347,6 +353,8 @@ public class RegistroCliente {
                         emailText_edit.setText(cliente.getEmail());
                         numberText_edit.setText(String.valueOf(cliente.getNumber()));
                         addressText_edit.setText(cliente.getAddress());
+                        documentText_edit.setText(String.valueOf(cliente.getDocument()));
+                        generText_edit.setText(cliente.getGener());
 
                         // Rellenar el resto de los campos...
                     } else {
